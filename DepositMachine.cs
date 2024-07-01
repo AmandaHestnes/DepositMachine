@@ -36,7 +36,7 @@ namespace DepositMachine
             voutcherAmount += bottle.Value;
             nrOfBottles++;
             voucherNrBottles++;
-            log.Add($"Bottle turned in. Nr of bottles turned in is {nrOfBottles}");
+            log.Add($"Bottle turned in. Number of bottles {nrOfBottles}");
             Console.WriteLine("Bottle accepted");
         }
 
@@ -48,14 +48,14 @@ namespace DepositMachine
             voutcherAmount += can.Value;
             nrOfCans++;
             voucherNrCans++;
-            log.Add($"Can turned in. Nr of cans turned in is {nrOfCans}");
+            log.Add($"Can turned in. Number of cans {nrOfCans}");
             Console.WriteLine("Can accepted");
         }
 
         public void PrintVoucher()
         {
-            Voucher voucher = new Voucher(totalAmount, voucherNrBottles, voucherNrCans);
-            log.Add($"Voucher: {voucher}");
+            Voucher voucher = new Voucher(voutcherAmount, voucherNrBottles, voucherNrCans);
+            log.Add($"Voucher printed");
             ResetVoucherCountAndAmount();
             voucher.PrintVoucher();
         }

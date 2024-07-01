@@ -12,10 +12,11 @@
             Console.WriteLine("3. Print voucher");
             Console.WriteLine("4. Show log");
             Console.WriteLine("5. Exit");
+            Console.WriteLine("Choose an option");
 
             while (true) 
             {
-                Console.WriteLine("Choose an option");
+                Console.WriteLine();
                 string choice = Console.ReadLine();
 
                 switch (choice)
