@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.Design;
-
-namespace DepositMachine
+﻿namespace DepositMachine
 {
     internal class Program
     {
