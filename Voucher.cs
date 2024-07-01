@@ -15,7 +15,13 @@
 
         public void PrintVoucher()
         {
-            Console.WriteLine("Voucher Amount: {Amount} NOK");
+            Console.WriteLine("\nVOUCHER");
+            Console.WriteLine("------------------------------");
+            Console.WriteLine($"Voucher Amount: {Amount} NOK");
+            Console.WriteLine($"Nr of bottles {NrBottles}");
+            Console.WriteLine($"Nr of cans {NrCans} \n");
+            Console.WriteLine("Thank you for recycling!!");
+            Console.WriteLine("------------------------------");
         }
     }
 }
