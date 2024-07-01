@@ -13,9 +13,7 @@ namespace DepositMachine
         private List<string> log;
         private int nrOfCans;
         private int nrOfBottles;
-        private int voucherNrCans;
-        private int voucherNrBottles;
-        private int voutcherAmount;
+        private Voucher voucher;
 
         public DepositMachine()
         {
@@ -23,9 +21,7 @@ namespace DepositMachine
             log = new List<string>();
             nrOfBottles = 0;
             nrOfCans = 0;
-            voucherNrCans = 0;
-            voucherNrBottles = 0;
-            voutcherAmount = 0;
+            voucher = new Voucher();
         }
 
         public async Task AcceptBottleAsync()
@@ -33,9 +29,9 @@ namespace DepositMachine
             Bottle bottle = new Bottle();
             await Task.Delay(bottle.ProcessingTime);
             totalAmount += bottle.Value;
-            voutcherAmount += bottle.Value;
             nrOfBottles++;
-            voucherNrBottles++;
+            voucher.Amount += bottle.Value;
+            voucher.NrBottles++;
             log.Add($"Bottle turned in. Number of bottles {nrOfBottles}");
             Console.WriteLine("Bottle accepted");
         }
@@ -45,25 +41,18 @@ namespace DepositMachine
             Can can = new Can();
             await Task.Delay(can.ProcessingTime);
             totalAmount += can.Value;
-            voutcherAmount += can.Value;
             nrOfCans++;
-            voucherNrCans++;
+            voucher.Amount += can.Value;
+            voucher.NrCans++;
             log.Add($"Can turned in. Number of cans {nrOfCans}");
             Console.WriteLine("Can accepted");
         }
 
         public void PrintVoucher()
         {
-            Voucher voucher = new Voucher(voutcherAmount, voucherNrBottles, voucherNrCans);
             log.Add($"Voucher printed");
-            ResetVoucherCountAndAmount();
             voucher.PrintVoucher();
-        }
-        internal void ResetVoucherCountAndAmount()
-        {
-            voutcherAmount = 0;
-            voucherNrBottles = 0 ;
-            voucherNrCans = 0 ;
+            voucher = new Voucher();
         }
 
         public void ShowLog()

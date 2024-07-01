@@ -1,4 +1,6 @@
-﻿namespace DepositMachine
+﻿using System.ComponentModel.Design;
+
+namespace DepositMachine
 {
     internal class Program
     {
@@ -6,13 +8,7 @@
         {
             DepositMachine machine = new DepositMachine();
 
-            Console.WriteLine("Can/Bottle Deposit Machine");
-            Console.WriteLine("1. Turn in a bottle");
-            Console.WriteLine("2. Turn in a can");
-            Console.WriteLine("3. Print voucher");
-            Console.WriteLine("4. Show log");
-            Console.WriteLine("5. Exit");
-            Console.WriteLine("Choose an option");
+            Menu();
 
             while (true) 
             {
@@ -34,6 +30,9 @@
                         machine.ShowLog();
                         break;
                     case "5":
+                        Menu();
+                        break;
+                    case "6":
                         return;
                     default:
                         Console.WriteLine("Invalid option, please try again.");
@@ -42,6 +41,17 @@
             }
 
             
+        }
+        internal static void Menu()
+        {
+            Console.WriteLine("Can/Bottle Deposit Machine");
+            Console.WriteLine("1. Turn in a bottle");
+            Console.WriteLine("2. Turn in a can");
+            Console.WriteLine("3. Print voucher");
+            Console.WriteLine("4. Show log");
+            Console.WriteLine("5. Show menu");
+            Console.WriteLine("6. Exit");
+            Console.WriteLine("Choose an option");
         }
     }
 }
