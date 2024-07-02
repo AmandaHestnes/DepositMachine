@@ -10,12 +10,6 @@ namespace DepositMachine
         public int NrOfBottles { get; private set; }    
         public Voucher Voucher { get; private set; }
 
-        //private int totalAmount;
-        //private List<string> log;
-        //private int nrOfCans;
-        //private int nrOfBottles;
-        //private Voucher voucher;
-
         public RecyclingMachine()
         {
             TotalAmount = 0;
