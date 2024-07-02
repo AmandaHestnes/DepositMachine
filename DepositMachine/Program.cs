@@ -4,7 +4,7 @@
     {
         static async Task Main(string[] args)
         {
-            DepositMachine machine = new DepositMachine();
+            RecyclingMachine machine = new RecyclingMachine();
 
             Menu();
 

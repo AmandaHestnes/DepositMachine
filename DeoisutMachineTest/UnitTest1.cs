@@ -1,15 +1,21 @@
+using DepositMachine;
+
 namespace DeoisutMachineTest
 {
-    public class Tests
-    {
+    public class DepositMachineTests {
+
+        private RecyclingMachine _recyclingMachine;
+
         [SetUp]
         public void Setup()
         {
+            _recyclingMachine = new RecyclingMachine();
         }
 
         [Test]
-        public void Test1()
+        public async Task AcceptBottleAsync_ShouldIncreaseTotalAmountAndNumberOfBottles()
         {
+            //int totalAmount = _recyclingMachine.Total
             Assert.Pass();
         }
     }
