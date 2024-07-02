@@ -42,6 +42,7 @@ namespace DeoisutMachineTest
         {
             _recyclingMachine.AcceptBottleAsync().Wait();
             _recyclingMachine.AcceptCanAsync().Wait();
+            _recyclingMachine.AcceptCanAsync().Wait();
             int voucherAmountBeforePrint = _recyclingMachine.Voucher.Amount;
 
             _recyclingMachine.PrintVoucher();
@@ -57,6 +58,7 @@ namespace DeoisutMachineTest
         {
             _recyclingMachine.AcceptBottleAsync().Wait();
             _recyclingMachine.AcceptCanAsync().Wait();
+            _recyclingMachine.AcceptCanAsync().Wait();
             int totalAmoundBeforePrint = _recyclingMachine.TotalAmount;
             int nrOfBottles = _recyclingMachine.NrOfBottles;
             int nrOfCans = _recyclingMachine.NrOfCans;
@@ -67,6 +69,55 @@ namespace DeoisutMachineTest
             Assert.That(_recyclingMachine.TotalAmount, Is.EqualTo(totalAmoundBeforePrint));
             Assert.That(_recyclingMachine.NrOfBottles, Is.EqualTo(nrOfBottles));
             Assert.That(_recyclingMachine.NrOfCans, Is.EqualTo(nrOfCans));
+        }
+
+        [Test]
+        public void Log_ShouldHaveTheRightNumberOfLogs()
+        {
+            _recyclingMachine.AcceptBottleAsync().Wait();
+            _recyclingMachine.AcceptCanAsync().Wait();
+            _recyclingMachine.PrintVoucher();
+            _recyclingMachine.AcceptBottleAsync().Wait();
+
+            int nrOfEntry = 4;
+
+            Assert.That(_recyclingMachine.Log.Count, Is.EqualTo(nrOfEntry));
+        }
+
+        [Test]
+        public void ShowLog_ShuldNotResetCountAndTotalAmount()
+        {
+            _recyclingMachine.AcceptBottleAsync().Wait();
+            _recyclingMachine.AcceptCanAsync().Wait();
+            _recyclingMachine.AcceptCanAsync().Wait();
+            int totalAmoundBeforeShowLog = _recyclingMachine.TotalAmount;
+            int nrOfBottles = _recyclingMachine.NrOfBottles;
+            int nrOfCans = _recyclingMachine.NrOfCans;
+
+            _recyclingMachine.ShowLog();
+
+            Assert.That(_recyclingMachine.TotalAmount, Is.Not.EqualTo(0));
+            Assert.That(_recyclingMachine.TotalAmount, Is.EqualTo(totalAmoundBeforeShowLog));
+            Assert.That(_recyclingMachine.NrOfBottles, Is.EqualTo(nrOfBottles));
+            Assert.That(_recyclingMachine.NrOfCans, Is.EqualTo(nrOfCans));
+        }
+
+        [Test]
+        public void ShowLog_ShuldNotResetVoucherCountAndAmount()
+        {
+            _recyclingMachine.AcceptBottleAsync().Wait();
+            _recyclingMachine.AcceptCanAsync().Wait();
+            _recyclingMachine.AcceptCanAsync().Wait();
+            int totalAmoundBeforeShowLog= _recyclingMachine.Voucher.Amount;
+            int nrOfBottles = _recyclingMachine.Voucher.NrBottles;
+            int nrOfCans = _recyclingMachine.Voucher.NrCans;
+
+            _recyclingMachine.ShowLog();
+
+            Assert.That(_recyclingMachine.Voucher.Amount, Is.Not.EqualTo(0));
+            Assert.That(_recyclingMachine.Voucher.Amount, Is.EqualTo(totalAmoundBeforeShowLog));
+            Assert.That(_recyclingMachine.Voucher.NrBottles, Is.EqualTo(nrOfBottles));
+            Assert.That(_recyclingMachine.Voucher.NrCans, Is.EqualTo(nrOfCans));
         }
     }
 }
