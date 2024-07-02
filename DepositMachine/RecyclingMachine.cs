@@ -29,6 +29,7 @@ namespace DepositMachine
             Voucher.NrBottles++;
             Log.Add($"Bottle turned in. Number of bottles {NrOfBottles}");
             Console.WriteLine("Bottle accepted");
+            Console.WriteLine($"Bottles:{Voucher.NrBottles} | Cans:{Voucher.NrCans} | Amount:{Voucher.Amount}NOK");
         }
 
         public async Task AcceptCanAsync()
@@ -41,6 +42,7 @@ namespace DepositMachine
             Voucher.NrCans++;
             Log.Add($"Can turned in. Number of cans {NrOfCans}");
             Console.WriteLine("Can accepted");
+            Console.WriteLine($"Bottles:{Voucher.NrBottles} | Cans:{Voucher.NrCans} | Amount:{Voucher.Amount}NOK");
         }
 
         public void PrintVoucher()
