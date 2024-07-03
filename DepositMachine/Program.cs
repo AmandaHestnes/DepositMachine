@@ -2,7 +2,7 @@
 {
     internal class Program
     {
-        static async Task Main(string[] args)
+        static void Main(string[] args)
         {
             RecyclingMachine machine = new RecyclingMachine();
 
@@ -16,10 +16,10 @@
                 switch (choice)
                 {
                     case "1":
-                        await machine.AcceptBottleAsync();
+                        machine.AcceptBottle();
                         break;
                     case "2":
-                        await machine.AcceptCanAsync();
+                        machine.AcceptCan();
                         break;
                     case "3":
                         machine.PrintVoucher();

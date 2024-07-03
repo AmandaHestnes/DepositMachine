@@ -19,10 +19,10 @@ namespace DepositMachine
             Voucher = new Voucher();
         }
 
-        public async Task AcceptBottleAsync()
+        public void AcceptBottle()
         {
             Bottle bottle = new Bottle();
-            await Task.Delay(bottle.ProcessingTime);
+            Thread.Sleep(bottle.ProcessingTime);
             TotalAmount += bottle.Value;
             NrOfBottles++;
             Voucher.Amount += bottle.Value;
@@ -32,10 +32,10 @@ namespace DepositMachine
             Console.WriteLine($"Bottles:{Voucher.NrBottles} | Cans:{Voucher.NrCans} | Amount:{Voucher.Amount}NOK");
         }
 
-        public async Task AcceptCanAsync()
+        public void AcceptCan()
         {
             Can can = new Can();
-            await Task.Delay(can.ProcessingTime);
+            Thread.Sleep(can.ProcessingTime);
             TotalAmount += can.Value;
             NrOfCans++;
             Voucher.Amount += can.Value;

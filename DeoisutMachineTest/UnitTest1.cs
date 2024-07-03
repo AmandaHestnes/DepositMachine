@@ -14,24 +14,24 @@ namespace DeoisutMachineTest
         }
 
         [Test]
-        public async Task AcceptBottleAsync_ShouldIncreaseTotalAmountAndNumberOfBottles()
+        public void AcceptBottle_ShouldIncreaseTotalAmountAndNumberOfBottles()
         {
             int totalAmount = _recyclingMachine.TotalAmount;
             int nrOfBottles = _recyclingMachine.NrOfBottles;
 
-            await _recyclingMachine.AcceptBottleAsync();
+            _recyclingMachine.AcceptBottle();
 
             Assert.That(totalAmount + 3, Is.EqualTo(_recyclingMachine.TotalAmount));
             Assert.That(nrOfBottles + 1, Is.EqualTo(_recyclingMachine.NrOfBottles));
         }
 
         [Test]
-        public async Task AcceptCanAsync_ShouldIncreaseTotalAmountAndNumberOfCans()
+        public void AcceptCan_ShouldIncreaseTotalAmountAndNumberOfCans()
         {
             int totalAmount = _recyclingMachine.TotalAmount;
             int nrOfCans = _recyclingMachine.NrOfCans;
 
-            await _recyclingMachine.AcceptCanAsync();
+            _recyclingMachine.AcceptCan();
 
             Assert.That(totalAmount + 2, Is.EqualTo(_recyclingMachine.TotalAmount));
             Assert.That(nrOfCans + 1, Is.EqualTo(_recyclingMachine.NrOfCans));
@@ -40,9 +40,9 @@ namespace DeoisutMachineTest
         [Test]
         public void PrintVoucher_ShouldResetVoucherAmountAndCount()
         {
-            _recyclingMachine.AcceptBottleAsync().Wait();
-            _recyclingMachine.AcceptCanAsync().Wait();
-            _recyclingMachine.AcceptCanAsync().Wait();
+            _recyclingMachine.AcceptBottle();
+            _recyclingMachine.AcceptCan();
+            _recyclingMachine.AcceptCan();
             int voucherAmountBeforePrint = _recyclingMachine.Voucher.Amount;
 
             _recyclingMachine.PrintVoucher();
@@ -56,9 +56,9 @@ namespace DeoisutMachineTest
 
         public void PrintVoucher_ShouldNotResetCountAndTotalAmount()
         {
-            _recyclingMachine.AcceptBottleAsync().Wait();
-            _recyclingMachine.AcceptCanAsync().Wait();
-            _recyclingMachine.AcceptCanAsync().Wait();
+            _recyclingMachine.AcceptBottle();
+            _recyclingMachine.AcceptCan();
+            _recyclingMachine.AcceptCan();
             int totalAmoundBeforePrint = _recyclingMachine.TotalAmount;
             int nrOfBottles = _recyclingMachine.NrOfBottles;
             int nrOfCans = _recyclingMachine.NrOfCans;
@@ -74,10 +74,10 @@ namespace DeoisutMachineTest
         [Test]
         public void Log_ShouldHaveTheRightNumberOfLogs()
         {
-            _recyclingMachine.AcceptBottleAsync().Wait();
-            _recyclingMachine.AcceptCanAsync().Wait();
+            _recyclingMachine.AcceptBottle();
+            _recyclingMachine.AcceptCan();
             _recyclingMachine.PrintVoucher();
-            _recyclingMachine.AcceptBottleAsync().Wait();
+            _recyclingMachine.AcceptBottle();
 
             int nrOfEntry = 4;
 
@@ -87,9 +87,9 @@ namespace DeoisutMachineTest
         [Test]
         public void ShowLog_ShuldNotResetCountAndTotalAmount()
         {
-            _recyclingMachine.AcceptBottleAsync().Wait();
-            _recyclingMachine.AcceptCanAsync().Wait();
-            _recyclingMachine.AcceptCanAsync().Wait();
+            _recyclingMachine.AcceptBottle();
+            _recyclingMachine.AcceptCan();
+            _recyclingMachine.AcceptCan();
             int totalAmoundBeforeShowLog = _recyclingMachine.TotalAmount;
             int nrOfBottles = _recyclingMachine.NrOfBottles;
             int nrOfCans = _recyclingMachine.NrOfCans;
@@ -105,9 +105,9 @@ namespace DeoisutMachineTest
         [Test]
         public void ShowLog_ShuldNotResetVoucherCountAndAmount()
         {
-            _recyclingMachine.AcceptBottleAsync().Wait();
-            _recyclingMachine.AcceptCanAsync().Wait();
-            _recyclingMachine.AcceptCanAsync().Wait();
+            _recyclingMachine.AcceptBottle();
+            _recyclingMachine.AcceptCan();
+            _recyclingMachine.AcceptCan();
             int totalAmoundBeforeShowLog= _recyclingMachine.Voucher.Amount;
             int nrOfBottles = _recyclingMachine.Voucher.NrBottles;
             int nrOfCans = _recyclingMachine.Voucher.NrCans;
